@@ -96,8 +96,14 @@ void FOCMotor::monitor() {
   if(!monitor_port) return;
   bool printed = 0;
 
+  if(monitor_variables & _MON_TEMP){
+    if(!printed && monitor_start_char) monitor_port->print(monitor_start_char);
+    monitor_port->print(temperature,monitor_decimals);    
+    printed= true;
+  }
   if(monitor_variables & _MON_TARGET){
     if(!printed && monitor_start_char) monitor_port->print(monitor_start_char);
+    else if(printed) monitor_port->print(monitor_separator);
     monitor_port->print(target,monitor_decimals);    
     printed= true;
   }

@@ -13,13 +13,14 @@
 
 
 // monitoring bitmap
-#define _MON_TARGET 0b1000000 // monitor target value
-#define _MON_VOLT_Q 0b0100000 // monitor voltage q value
-#define _MON_VOLT_D 0b0010000 // monitor voltage d value
-#define _MON_CURR_Q 0b0001000 // monitor current q value - if measured
-#define _MON_CURR_D 0b0000100 // monitor current d value - if measured
-#define _MON_VEL    0b0000010 // monitor velocity value
-#define _MON_ANGLE  0b0000001 // monitor angle value
+#define _MON_TEMP   0b10000000 // monitor temperature value
+#define _MON_TARGET 0b01000000 // monitor target value
+#define _MON_VOLT_Q 0b00100000 // monitor voltage q value
+#define _MON_VOLT_D 0b00010000 // monitor voltage d value
+#define _MON_CURR_Q 0b00001000 // monitor current q value - if measured
+#define _MON_CURR_D 0b00000100 // monitor current d value - if measured
+#define _MON_VEL    0b00000010 // monitor velocity value
+#define _MON_ANGLE  0b00000001 // monitor angle value
 
 /**
  *  Motiron control type
@@ -161,6 +162,7 @@ class FOCMotor
     DQVoltage_s voltage;//!< current d and q voltage set to the motor
     DQCurrent_s current;//!< current d and q current measured
     float voltage_bemf; //!< estimated backemf voltage (if provided KV constant)
+    float temperature; ///!< current motor temperature
 
     // motor configuration parameters
     float voltage_sensor_align;//!< sensor and motor align voltage parameter

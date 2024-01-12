@@ -270,55 +270,69 @@ void Commander::motor(FOCMotor* motor, char* user_command) {
       printVerbose(F("Monitor | "));
       switch (sub_cmd){
         case SCMD_GET:      // get command
-          switch((uint8_t)value){
-            case 0: // get target
-              printVerbose(F("target: "));
-              println(motor->target);
-              break;
-            case 1: // get voltage q
-              printVerbose(F("Vq: "));
-              println(motor->voltage.q);
-              break;
-            case 2: // get voltage d
-              printVerbose(F("Vd: "));
-              println(motor->voltage.d);
-              break;
-            case 3: // get current q
-              printVerbose(F("Cq: "));
-              println(motor->current.q);
-              break;
-            case 4: // get current d
-              printVerbose(F("Cd: "));
-              println(motor->current.d);
-              break;
-            case 5: // get velocity
-              printVerbose(F("vel: "));
-              println(motor->shaft_velocity);
-              break;
-            case 6: // get angle
-              printVerbose(F("angle: "));
-              println(motor->shaft_angle);
-              break;
-            case 7: // get all states
-              printVerbose(F("all: "));
-              print(motor->target);
-              print(";");
-              print(motor->voltage.q);
-              print(";");
-              print(motor->voltage.d);
-              print(";");
-              print(motor->current.q);
-              print(";");
-              print(motor->current.d);
-              print(";");
-              print(motor->shaft_velocity);
-              print(";");
-              println(motor->shaft_angle);
-              break;
-            default:
-              printError();
-              break;
-          }
+          if (uint8_t(value)>>7 & 0x01) printVerbose(F("Temp "));
+          if (uint8_t(value)>>6 & 0x01) printVerbose(F("Target "));
+          if (uint8_t(value)>>5 & 0x01) printVerbose(F("VQ "));
+          if (uint8_t(value)>>4 & 0x01) printVerbose(F("VD "));
+          if (uint8_t(value)>>3 & 0x01) printVerbose(F("CQ "));
+          if (uint8_t(value)>>2 & 0x01) printVerbose(F("CD "));
+          if (uint8_t(value)>>1 & 0x01) printVerbose(F("Vel "));
+          if (uint8_t(value)>>0 & 0x01) printVerbose(F("Angle "));
+          printVerbose(F("\n"));
+          motor->monitor_variables = (uint8_t)value;        
+          // switch((uint8_t)value){
+          //   case 0: // get target
+          //     printVerbose(F("target: "));
+          //     println(motor->target);
+          //     break;
+          //   case 1: // get voltage q
+          //     printVerbose(F("Vq: "));
+          //     println(motor->voltage.q);
+          //     break;
+          //   case 2: // get voltage d
+          //     printVerbose(F("Vd: "));
+          //     println(motor->voltage.d);
+          //     break;
+          //   case 3: // get current q
+          //     printVerbose(F("Cq: "));
+          //     println(motor->current.q);
+          //     break;
+          //   case 4: // get current d
+          //     printVerbose(F("Cd: "));
+          //     println(motor->current.d);
+          //     break;
+          //   case 5: // get velocity
+          //     printVerbose(F("vel: "));
+          //     println(motor->shaft_velocity);
+          //     break;
+          //   case 6: // get angle
+          //     printVerbose(F("angle: "));
+          //     println(motor->shaft_angle);
+          //     break;
+          //   case 7: // get temperature
+          //     printVerbose(F("temperature: "));
+          //     println(motor->temperature);
+          //     break;              
+          //   case 8: // get all states
+          //     printVerbose(F("all: "));
+          //     print(motor->target);
+          //     print(";");
+          //     print(motor->voltage.q);
+          //     print(";");
+          //     print(motor->voltage.d);
+          //     print(";");
+          //     print(motor->current.q);
+          //     print(";");
+          //     print(motor->current.d);
+          //     print(";");
+          //     print(motor->shaft_velocity);
+          //     print(";");
+          //     println(motor->shaft_angle);
+          //     break;
+          //   default:
+          //     printError();
+          //     break;
+          // }
           break;
         case SCMD_DOWNSAMPLE:
           printVerbose(F("downsample: "));
