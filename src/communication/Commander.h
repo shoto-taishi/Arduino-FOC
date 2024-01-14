@@ -243,9 +243,9 @@ class Commander
     bool isSentinel(char ch);
   private:
     // Subscribed command callback variables
-    CommandCallback call_list[20];//!< array of command callback pointers - 20 is an arbitrary number
-    char call_ids[20]; //!< added callback commands
-    char* call_label[20]; //!< added callback labels
+    CommandCallback call_list[99];//!< array of command callback pointers - 99 is an arbitrary number
+    char call_ids[99]; //!< added callback commands
+    char* call_label[99]; //!< added callback labels
     int call_count = 0;//!< number callbacks that are subscribed
 
     // helping variable for serial communication reading

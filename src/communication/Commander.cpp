@@ -392,11 +392,6 @@ void Commander::motion(FOCMotor* motor, char* user_cmd, char* separator){
         default:
           // change control type
           if(!GET && value >= 0 && (int)value < 5){
-            if(value < 2) target(motor, "0");         // set velocity / torque target to zero 
-            if(value == 2) {                          // set angle target to current angle 
-              char temp[8];
-              target(motor, dtostrf(motor->shaft_angle,8,3,temp));
-            }
             motor->controller = (MotionControlType)value;
           } 
           switch(motor->controller){
@@ -415,6 +410,11 @@ void Commander::motion(FOCMotor* motor, char* user_cmd, char* separator){
             case MotionControlType::angle_openloop:
               println(F("angle open"));
               break;
+          }
+          if(value < 2) target(motor, "0");         // set velocity / torque target to zero 
+          if(value == 2) {                          // set angle target to current angle 
+            char temp[8];
+            target(motor, dtostrf(motor->shaft_angle,8,3,temp));
           }
             break;
         }
