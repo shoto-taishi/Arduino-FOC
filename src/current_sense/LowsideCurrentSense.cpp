@@ -252,23 +252,3 @@ int LowsideCurrentSense::driverAlign(float voltage){
 
     return exit_flag;
 }
-
-void LowsideCurrentSense::setPinA(int pin){
-    pinA = pin;
-}
-void LowsideCurrentSense::setPinB(int pin){
-    pinB = pin;
-}
-void LowsideCurrentSense::setPinC(int pin){
-    pinC = pin;
-}
-
-int LowsideCurrentSense::getPinA(){
-    return pinA;
-}
-int LowsideCurrentSense::getPinB(){
-    return pinB;
-}
-int LowsideCurrentSense::getPinC(){
-    return pinC;
-}
