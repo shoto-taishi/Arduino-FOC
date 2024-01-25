@@ -48,11 +48,14 @@ public:
     static void println();
     static void println(int val);
     static void println(float val);
+    static void println(float val, int decimal);
 
     static void print(const char* msg);
     static void print(const __FlashStringHelper* msg);
     static void print(int val);
     static void print(float val);
+    static void print(float val, int decimal);
+    
 
 protected:
     static Print* _debugPrint;

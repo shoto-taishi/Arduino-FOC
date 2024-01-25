@@ -24,7 +24,11 @@ void SimpleFOCDebug::println(float val) {
     }
 }
 
-
+void SimpleFOCDebug::println(float val, int decimal) {
+    if (_debugPrint != NULL) {
+        _debugPrint->println(val, decimal);
+    }
+}
 
 void SimpleFOCDebug::println(const char* str) {
     if (_debugPrint != NULL) {
@@ -91,6 +95,13 @@ void SimpleFOCDebug::print(int val) {
 void SimpleFOCDebug::print(float val) {
     if (_debugPrint != NULL) {
         _debugPrint->print(val);
+    }
+}
+
+
+void SimpleFOCDebug::print(float val, int decimal) {
+    if (_debugPrint != NULL) {
+        _debugPrint->print(val, decimal);
     }
 }
 
