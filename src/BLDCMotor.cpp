@@ -435,6 +435,14 @@ void BLDCMotor::move(float new_target) {
         else voltage.d = _constrain( -current_sp*shaft_velocity*pole_pairs*phase_inductance, -voltage_limit, voltage_limit);
       }
       break;
+    case MotionControlType::angle_torque:
+      // direction control of torque (foc current torque control)
+      
+      shaft_angle_sp = target;
+      current_sp = P_angle( shaft_angle_sp - shaft_angle );
+      current_sp = _constrain(current_sp, -current_limit, current_limit);
+
+      break;
     case MotionControlType::velocity:
       // velocity set point - sensor precision: this calculation is numerically precise.
       shaft_velocity_sp = target;
