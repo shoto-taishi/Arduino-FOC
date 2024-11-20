@@ -494,6 +494,11 @@ void Commander::scalar(float* value,  char* user_cmd){
   println(*value);
 }
 
+void Commander::scalar(int* value,  char* user_cmd){
+  bool GET  = isSentinel(user_cmd[0]);
+  if(!GET) *value = atoi(user_cmd);
+  println(*value);
+}
 
 void Commander::target(FOCMotor* motor,  char* user_cmd, char* separator){
   // if no values sent

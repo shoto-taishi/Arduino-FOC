@@ -190,6 +190,16 @@ class Commander
      *  - It can be get by sending an empty string '\n'
      *  - It can be set by sending 'value' - (ex. 0.01f for settin *value=0.01)
      */
+    void scalar(int* value, char* user_cmd);
+        /**
+     * Int variable scalar command interface
+     * @param value    - int variable pointer 
+     * @param user_cmd - the string command
+     * 
+     *  - It only has one property - one int value
+     *  - It can be get by sending an empty string '\n'
+     *  - It can be set by sending 'value'
+     */
     void scalar(float* value, char* user_cmd);
     /**
      *  Target setting interface, enables setting the target and limiting variables at once. 
