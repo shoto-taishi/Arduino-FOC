@@ -50,6 +50,7 @@ public:
     static void println(const char* msg, char val);
     static void println();
     static void println(int val);
+    static void println(uint val);
     static void println(float val);
 
     static void print(const char* msg);

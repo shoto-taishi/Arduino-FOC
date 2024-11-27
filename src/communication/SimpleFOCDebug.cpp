@@ -11,8 +11,13 @@ void SimpleFOCDebug::enable(Print* debugPrint) {
     _debugPrint = debugPrint;
 }
 
-
 void SimpleFOCDebug::println(int val) {
+    if (_debugPrint != NULL) {
+        _debugPrint->println(val);
+    }
+}
+
+void SimpleFOCDebug::println(uint val) {
     if (_debugPrint != NULL) {
         _debugPrint->println(val);
     }
@@ -20,7 +25,7 @@ void SimpleFOCDebug::println(int val) {
 
 void SimpleFOCDebug::println(float val) {
     if (_debugPrint != NULL) {
-        _debugPrint->println(val);
+        _debugPrint->println(val,4);
     }
 }
 
