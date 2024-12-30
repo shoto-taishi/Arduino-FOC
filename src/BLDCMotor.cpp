@@ -422,6 +422,12 @@ void BLDCMotor::move(float new_target) {
 
   // upgrade the current based voltage limit
   switch (controller) {
+    case MotionControlType::impedance:
+      current_sp = impedance_control_targets[0];
+      current_sp += impedance_control_Kp * (shaft_angle - impedance_control_targets[1]);
+      current_sp += impedance_control_Kd * (shaft_velocity - impedance_control_targets[2]);
+      current_sp = _constrain(current_sp, -current_limit, current_limit);
+      break;
     case MotionControlType::torque:
       if(torque_controller == TorqueControlType::voltage){ // if voltage torque control
         if(!_isset(phase_resistance))  voltage.q = target;

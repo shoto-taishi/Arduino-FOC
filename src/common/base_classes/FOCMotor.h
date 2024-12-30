@@ -29,7 +29,8 @@ enum MotionControlType : uint8_t {
   velocity          = 0x01,     //!< Velocity motion control
   angle             = 0x02,     //!< Position/angle motion control
   velocity_openloop = 0x03,
-  angle_openloop    = 0x04
+  angle_openloop    = 0x04,
+  impedance         = 0x05
 };
 
 /**
@@ -162,7 +163,10 @@ class FOCMotor
     DQCurrent_s current;//!< current d and q current measured
     float voltage_bemf; //!< estimated backemf voltage (if provided KV constant)
     float	Ualpha, Ubeta; //!< Phase voltages U alpha and U beta used for inverse Park and Clarke transform
-
+    
+    float impedance_control_targets[3] = {0.0, 0.0, 0.0}; //!< torque, position, velocity
+    float impedance_control_Kp = 0.0; //!< position gain
+    float impedance_control_Kd = 0.0; //!< velocity gain
 
     // motor configuration parameters
     float voltage_sensor_align;//!< sensor and motor align voltage parameter
