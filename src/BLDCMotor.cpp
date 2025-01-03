@@ -424,8 +424,8 @@ void BLDCMotor::move(float new_target) {
   switch (controller) {
     case MotionControlType::impedance:
       current_sp = impedance_control_targets[0];
-      current_sp += impedance_control_Kp * (shaft_angle - impedance_control_targets[1]);
-      current_sp += impedance_control_Kd * (shaft_velocity - impedance_control_targets[2]);
+      current_sp += impedance_control_Kp * (impedance_control_targets[1] - shaft_angle);
+      current_sp += impedance_control_Kd * (impedance_control_targets[2] - shaft_velocity);
       current_sp = _constrain(current_sp, -current_limit, current_limit);
       break;
     case MotionControlType::torque:
